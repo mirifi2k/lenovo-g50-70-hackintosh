@@ -127,8 +127,6 @@
 		<dict>
 			<key>Intel</key>
 			<true/>
-			<key>NVidia</key>
-			<true/>
 		</dict>
 	</dict>
 	<key>KernelAndKextPatches</key>
