@@ -8,6 +8,8 @@
 		<dict>
 			<key>Fixes</key>
 			<dict>
+				<key>AddPNLF</key>
+				<true/>
 				<key>FixHPET</key>
 				<true/>
 				<key>FixIPIC</key>
@@ -15,8 +17,6 @@
 				<key>FixRTC</key>
 				<true/>
 				<key>FixTMR</key>
-				<true/>
-				<key>AddPNLF</key>
 				<true/>
 			</dict>
 			<key>Patches</key>
@@ -41,6 +41,14 @@
 					<key>Replace</key>
 					<data>WERTTQ==</data>
 				</dict>
+				<dict>
+					<key>Comment</key>
+					<string>change GFX0 to IGPU</string>
+					<key>Find</key>
+					<data>R0ZYMA==</data>
+					<key>Replace</key>
+					<data>SUdQVQ==</data>
+				</dict>
 			</array>
 		</dict>
 		<key>SSDT</key>
@@ -56,10 +64,10 @@
 	<dict>
 		<key>Arguments</key>
 		<string>alcid=3</string>
+		<key>DefaultVolume</key>
+		<string>LastBootedVolume</string>
 		<key>Secure</key>
 		<false/>
-		<key>DefaultVolume</key>
-    	<string>LastBootedVolume</string>
 		<key>Timeout</key>
 		<integer>5</integer>
 	</dict>
@@ -113,10 +121,10 @@
 		<dict>
 			<key>PciRoot(0x0)/Pci(0x1b,0x0)</key>
 			<dict>
-				<key>alc-layout-id</key>
-				<integer>3</integer>
 				<key>No-hda-gfx</key>
 				<data>AAAAAAAAAAA=</data>
+				<key>alc-layout-id</key>
+				<integer>3</integer>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
@@ -126,6 +134,10 @@
 				<data>EgQAAA==</data>
 			</dict>
 		</dict>
+		<key>SetIntelBacklight</key>
+		<true/>
+		<key>SetIntelMaxBacklight</key>
+		<true/>
 	</dict>
 	<key>GUI</key>
 	<dict>
