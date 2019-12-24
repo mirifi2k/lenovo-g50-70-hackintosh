@@ -5,13 +5,13 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of DSDT.aml, Mon Dec 23 14:04:04 2019
+ * Disassembly of Desktop/DSDT.aml, Tue Dec 24 12:30:24 2019
  *
  * Original Table Header:
  *     Signature        "DSDT"
- *     Length           0x0000F83E (63550)
+ *     Length           0x0000F951 (63825)
  *     Revision         0x02
- *     Checksum         0xEB
+ *     Checksum         0xBC
  *     OEM ID           "LENOVO"
  *     OEM Table ID     "CB-01   "
  *     OEM Revision     0x00000001 (1)
@@ -3729,62 +3729,92 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                     Method (_Q11, 0, NotSerialized)  // _Qxx: EC Query
                     {
                         
-                        // Brightness Down
-                        Notify (PS2K, 0x20)
+                        
+                        
+                        \rmdt.p1("EC _Q11 enter")
+// Brightness Down
+                        Notify(\_SB.PCI0.LPCB.PS2K, 0x0405)
+\rmdt.p1("EC _Q11 exit")
+
+
+
 
                     }
 
                     Method (_Q12, 0, NotSerialized)  // _Qxx: EC Query
                     {
                         
-                        // Brightness Up
-                        Notify (PS2K, 0x10)
+                        
+                        
+                        \rmdt.p1("EC _Q12 enter")
+// Brightness Up
+                        Notify(\_SB.PCI0.LPCB.PS2K, 0x0406)
+\rmdt.p1("EC _Q12 exit")
+
+
+
 
                     }
 
                     Method (_Q1C, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Store (0x1C, P80H)
+                        \rmdt.p1("EC _Q1C enter")
+Store (0x1C, P80H)
                         Notify (VPC0, 0x80)
+\rmdt.p1("EC _Q1C exit")
+
                     }
 
                     Method (_Q25, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Store (0x25, P80H)
+                        \rmdt.p1("EC _Q25 enter")
+Store (0x25, P80H)
                         Notify (ADP0, 0x80)
                         Notify (BAT0, 0x80)
                         Notify (BAT0, 0x81)
+\rmdt.p1("EC _Q25 exit")
+
                     }
 
                     Method (_Q37, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Sleep (0x012C)
+                        \rmdt.p1("EC _Q37 enter")
+Sleep (0x012C)
                         Store (0x37, P80H)
                         Store (One, PWRS)
                         Notify (ADP0, 0x80)
                         Notify (BAT0, 0x80)
                         PNOT ()
+\rmdt.p1("EC _Q37 exit")
+
                     }
 
                     Method (_Q38, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Sleep (0x012C)
+                        \rmdt.p1("EC _Q38 enter")
+Sleep (0x012C)
                         Store (0x38, P80H)
                         Store (Zero, PWRS)
                         Notify (ADP0, 0x80)
                         Notify (BAT0, 0x80)
                         PNOT ()
+\rmdt.p1("EC _Q38 exit")
+
                     }
 
                     Method (_Q32, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Store (0x32, P80H)
+                        \rmdt.p1("EC _Q32 enter")
+Store (0x32, P80H)
                         Notify (PWRB, 0x80)
+\rmdt.p1("EC _Q32 exit")
+
                     }
 
                     Method (_Q42, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        If (LEqual (OSYS, 0x07D9))
+                        \rmdt.p1("EC _Q42 enter")
+If (LEqual (OSYS, 0x07D9))
                         {
                             Store (0x42, P80H)
                             If (LEqual (APFG, One))
@@ -3813,16 +3843,24 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                                 WTGP (0x57, One)
                             }
                         }
+\rmdt.p1("EC _Q42 exit")
+
                     }
 
                     Method (_Q44, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Store (0x44, P80H)
+                        \rmdt.p1("EC _Q44 enter")
+Store (0x44, P80H)
                         Notify (VPC0, 0x80)
+\rmdt.p1("EC _Q44 exit")
+
                     }
 
                     Method (_Q53, 0, NotSerialized)  // _Qxx: EC Query
-                    {
+                    {\rmdt.p1("EC _Q53 enter")
+
+\rmdt.p1("EC _Q53 exit")
+
                     }
 
                     Scope (\)
@@ -3834,7 +3872,8 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                     Name (DGST, 0xD1)
                     Method (_Q62, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        If (LEqual (GATY, 0x02))
+                        \rmdt.p1("EC _Q62 enter")
+If (LEqual (GATY, 0x02))
                         {
                             Store (One, DCPS)
                             If (LNotEqual (DGST, 0xD2))
@@ -3851,11 +3890,14 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                                 Notify (^^^RP05.PEGP, 0xC0)
                             }
                         }
+\rmdt.p1("EC _Q62 exit")
+
                     }
 
                     Method (_Q63, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        If (LEqual (GATY, 0x02))
+                        \rmdt.p1("EC _Q63 enter")
+If (LEqual (GATY, 0x02))
                         {
                             Store (Zero, DCPS)
                             If (LNotEqual (DGST, 0xD1))
@@ -3872,16 +3914,24 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                                 Notify (^^^RP05.PEGP, 0xC0)
                             }
                         }
+\rmdt.p1("EC _Q63 exit")
+
                     }
 
                     Method (_Q66, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Store (0xCC, SMIC)
+                        \rmdt.p1("EC _Q66 enter")
+Store (0xCC, SMIC)
+\rmdt.p1("EC _Q66 exit")
+
                     }
 
                     Method (_Q67, 0, NotSerialized)  // _Qxx: EC Query
                     {
-                        Store (0xCD, SMIC)
+                        \rmdt.p1("EC _Q67 enter")
+Store (0xCD, SMIC)
+\rmdt.p1("EC _Q67 exit")
+
                     }
 
                     Name (CMFP, Package (0x0E)
@@ -7470,7 +7520,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                     Store (0x07D9, OSYS)
                 }
 
-                If (_OSI ("Windows 2012"))
+                If(LOr(_OSI("Darwin"),_OSI("Windows 2012")))
                 {
                     Store (0x07DC, OSYS)
                 }
@@ -8369,7 +8419,7 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
             Name (_HID, "INT3420")  // _HID: Hardware ID
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                If (_OSI ("Windows 2012"))
+                If(LOr(_OSI("Darwin"),_OSI("Windows 2012")))
                 {
                     If (LEqual (BID, BW2C))
                     {
@@ -9860,21 +9910,45 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                 }
             }
 
-            
-            
-            Name(_PRW, Package() { 0x6D, 0 })
-            Method (_DSM, 4, NotSerialized)
+            Name (_PRW, Package (0x02)  // _PRW: Power Resources for Wake
             {
-                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                Return (Package()
+                0x6D, 
+                Zero
+            })
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                If (LEqual (Arg2, Zero))
                 {
-                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
-                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
-                    "AAPL,current-available", 2100,
-                    "AAPL,current-extra", 2200,
-                    "AAPL,current-extra-in-sleep", 1600,
-                    "AAPL,device-internal", 0x02,
-                    "AAPL,max-port-current-in-sleep", 2100,
+                    Return (Buffer (One)
+                    {
+                         0x03                                           
+                    })
+                }
+
+                Return (Package (0x0E)
+                {
+                    "subsystem-id", 
+                    Buffer (0x04)
+                    {
+                         0x70, 0x72, 0x00, 0x00                         
+                    }, 
+
+                    "subsystem-vendor-id", 
+                    Buffer (0x04)
+                    {
+                         0x86, 0x80, 0x00, 0x00                         
+                    }, 
+
+                    "AAPL,current-available", 
+                    0x0834, 
+                    "AAPL,current-extra", 
+                    0x0898, 
+                    "AAPL,current-extra-in-sleep", 
+                    0x0640, 
+                    "AAPL,device-internal", 
+                    0x02, 
+                    "AAPL,max-port-current-in-sleep", 
+                    0x0834
                 })
             }
         }
@@ -11391,21 +11465,45 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                 }
             }
 
-            
-            
-            Name(_PRW, Package() { 0x6D, 0 })
-            Method (_DSM, 4, NotSerialized)
+            Name (_PRW, Package (0x02)  // _PRW: Power Resources for Wake
             {
-                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
-                Return (Package()
+                0x6D, 
+                Zero
+            })
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                If (LEqual (Arg2, Zero))
                 {
-                    "subsystem-id", Buffer() { 0x70, 0x72, 0x00, 0x00 },
-                    "subsystem-vendor-id", Buffer() { 0x86, 0x80, 0x00, 0x00 },
-                    "AAPL,current-available", 2100,
-                    "AAPL,current-extra", 2200,
-                    "AAPL,current-extra-in-sleep", 1600,
-                    "AAPL,device-internal", 0x02,
-                    "AAPL,max-port-current-in-sleep", 2100,
+                    Return (Buffer (One)
+                    {
+                         0x03                                           
+                    })
+                }
+
+                Return (Package (0x0E)
+                {
+                    "subsystem-id", 
+                    Buffer (0x04)
+                    {
+                         0x70, 0x72, 0x00, 0x00                         
+                    }, 
+
+                    "subsystem-vendor-id", 
+                    Buffer (0x04)
+                    {
+                         0x86, 0x80, 0x00, 0x00                         
+                    }, 
+
+                    "AAPL,current-available", 
+                    0x0834, 
+                    "AAPL,current-extra", 
+                    0x0898, 
+                    "AAPL,current-extra-in-sleep", 
+                    0x0640, 
+                    "AAPL,device-internal", 
+                    0x02, 
+                    "AAPL,max-port-current-in-sleep", 
+                    0x0834
                 })
             }
         }
@@ -11427,9 +11525,12 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
                     ,   6, 
                 PMES,   1
             }
-            Name(_PRW, Package() { 0x6D, 0 })
 
-            
+            Name (_PRW, Package (0x02)  // _PRW: Power Resources for Wake
+            {
+                0x6D, 
+                Zero
+            })
         }
 
         Scope (\_SB.PCI0)
@@ -17254,6 +17355,113 @@ DefinitionBlock ("", "DSDT", 2, "LENOVO", "CB-01   ", 0x00000001)
     Method (B1B2, 2, NotSerialized)
     {
         Return (Or (Arg0, ShiftLeft (Arg1, 0x08)))
+    }
+    Device (RMDT)
+    {
+        Name (_HID, "RMD0000")
+        Name (RING, Package(256) { })
+        Mutex (RTMX, 0)
+        Name (HEAD, 0)
+        Name (TAIL, 0)
+        // PUSH: Use to push a trace item into RING for ACPIDebug.kext
+        Method (PUSH, 1, NotSerialized)
+        {
+            Acquire(RTMX, 0xFFFF)
+            // push new item at HEAD
+            Add(HEAD, 1, Local0)
+            If (LGreaterEqual(Local0, SizeOf(RING))) { Store(0, Local0) }
+            if (LNotEqual(Local0, TAIL))
+            {
+                Store(Arg0, Index(RING, HEAD))
+                Store(Local0, HEAD)
+            }
+            Release(RTMX)
+            Notify(RMDT, 0x80)
+        }
+        // FTCH: Used by ACPIDebug.kext to fetch an item from RING
+        Method (FTCH, 0, NotSerialized)
+        {
+            Acquire(RTMX, 0xFFFF)
+            // pull item from TAIL and return it
+            Store(0, Local0)
+            if (LNotEqual(HEAD, TAIL))
+            {
+                Store(DerefOf(Index(RING, TAIL)), Local0)
+                Increment(TAIL)
+                If (LGreaterEqual(TAIL, SizeOf(RING))) { Store(0, TAIL) }
+            }
+            Release(RTMX)
+            Return(Local0)
+        }
+        // COUN: Used by ACPIDebug.kext to determine number of items in RING
+        Method (COUN, 0, NotSerialized)
+        {
+            Acquire(RTMX, 0xFFFF)
+            // return count of items in RING
+            Subtract(HEAD, TAIL, Local0)
+            if (LLess(Local0, 0)) { Add(Local0, SizeOf(RING), Local0) }
+            Release(RTMX)
+            Return(Local0)
+        }
+        // Helper functions for multiple params at one time
+        Method (P1, 1, NotSerialized) { PUSH(Arg0) }
+        Method (P2, 2, Serialized)
+        {
+            Name (TEMP, Package(2) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            PUSH(TEMP)
+        }
+        Method (P3, 3, Serialized)
+        {
+            Name (TEMP, Package(3) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            PUSH(TEMP)
+        }
+        Method (P4, 4, Serialized)
+        {
+            Name (TEMP, Package(4) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            Store(Arg3, Index(TEMP, 3))
+            PUSH(TEMP)
+        }
+        Method (P5, 5, Serialized)
+        {
+            Name (TEMP, Package(5) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            Store(Arg3, Index(TEMP, 3))
+            Store(Arg4, Index(TEMP, 4))
+            PUSH(TEMP)
+        }
+        Method (P6, 6, Serialized)
+        {
+            Name (TEMP, Package(6) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            Store(Arg3, Index(TEMP, 3))
+            Store(Arg4, Index(TEMP, 4))
+            Store(Arg5, Index(TEMP, 5))
+            PUSH(TEMP)
+        }
+        Method (P7, 7, Serialized)
+        {
+            Name (TEMP, Package(7) { })
+            Store(Arg0, Index(TEMP, 0))
+            Store(Arg1, Index(TEMP, 1))
+            Store(Arg2, Index(TEMP, 2))
+            Store(Arg3, Index(TEMP, 3))
+            Store(Arg4, Index(TEMP, 4))
+            Store(Arg5, Index(TEMP, 5))
+            Store(Arg6, Index(TEMP, 6))
+            PUSH(TEMP)
+        }
     }
 }
 
